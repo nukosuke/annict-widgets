@@ -7,12 +7,13 @@ module.exports = {
   },
   output: {
     path: './public/javascripts',
+    publicPath: 'public/javascripts',
     filename: '[name].js'
   },
   module: {
     loaders: [
       { test: /\.vue$/, loader: 'vue' },
-      { test: /\.js$/, loader: 'babel' },
+      { test: /\.js$/ , loader: 'babel', exclude: /node_modules/ },
     ]
   },
   vue: {
@@ -30,6 +31,7 @@ module.exports = {
       compress: {
         warnings: false
       }
-    })
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
   ]
 }
