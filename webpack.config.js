@@ -1,0 +1,35 @@
+'use strict';
+var webpack = require('webpack');
+
+module.exports = {
+  entry: {
+    'annict-widgets': './client/javascripts/annict-widgets.js',
+  },
+  output: {
+    path: './public',
+    filename: '[name].js'
+  },
+  module: {
+    loaders: [
+      { test: /\.vue$/, loader: 'vue' },
+      { test: /\.js$/, loader: 'babel' },
+    ]
+  },
+  vue: {
+    loaders: {
+      js: 'babel'
+    }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  ]
+}
