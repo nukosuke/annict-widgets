@@ -6,7 +6,7 @@ module.exports = {
     'annict-widgets': './client/javascripts/annict-widgets.js',
   },
   output: {
-    path: './public',
+    path: './public/javascripts',
     filename: '[name].js'
   },
   module: {
