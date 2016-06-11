@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/nukosuke/annict-widgets#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "^4.13.4"
   }
 }
