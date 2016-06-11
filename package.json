@@ -1,0 +1,24 @@
+{
+  "name": "annict-widgets",
+  "version": "0.0.0",
+  "description": "Annict widget for website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nukosuke/annict-widgets.git"
+  },
+  "keywords": [
+    "anime",
+    "widget",
+    "service"
+  ],
+  "author": "nukosuke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nukosuke/annict-widgets/issues"
+  },
+  "homepage": "https://github.com/nukosuke/annict-widgets#readme"
+}
