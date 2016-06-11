@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/nukosuke/annict-widgets/issues"
   },
-  "homepage": "https://github.com/nukosuke/annict-widgets#readme"
+  "homepage": "https://github.com/nukosuke/annict-widgets#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
