@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/nukosuke/annict-widgets#readme",
   "dependencies": {
+    "annict": "0.0.2",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "pug": "^2.0.0-beta3",
