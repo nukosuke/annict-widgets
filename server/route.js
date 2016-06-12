@@ -25,6 +25,11 @@ router.get('/auth', (req, res) => {
 
 router.get('/auth/callback', (req, res) => {
   var code    = req.query.code;
+
+  if(!code) {
+    res.json({});
+  }
+
   var annict  = new Annict();
   annict.OAuth.token(
     CLIENT_ID,
@@ -34,6 +39,10 @@ router.get('/auth/callback', (req, res) => {
     code
   )
   .then(token => {
+    if(!token.access_token) {
+      res.json({});
+    }
+
     var User = req.app.get('models').User;
     User.create({
       access_token: token.access_token,
