@@ -34,7 +34,16 @@ router.get('/auth/callback', (req, res) => {
     code
   )
   .then(token => {
-    res.json({ access_token: token.access_token });
+    var User = req.app.get('models').User;
+    User.create({
+      access_token: token.access_token,
+      watching: [],
+      updated_at: new Date()
+    }, (err, user) => {
+      if(err) res.json({ err: 'failed to save token' });
+      res.json({ access_token: user.access_token, id: user._id });
+    });
+
   });
 });
 
@@ -42,6 +51,15 @@ router.get('/get_widget_code', (req, res) => {
   res.render('get-widget-code');
 });
 
+router.get('/watching/:id', (req, res) => {
+  var User = req.app.get('models').User;
+  User.findById(req.params.id, (err, user) => {
+    if(err) console.log(err);
 
+    if(!user) res.json({ works: [] });
+    res.json({works: user.watching});
+  });
+  console.log('test');
+});
 
 module.exports = router;
