@@ -4,6 +4,8 @@
   "description": "Annict widget for website",
   "main": "index.js",
   "scripts": {
+    "start": "node ./server/server.js",
+    "postinstall": "./node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack"
   },
