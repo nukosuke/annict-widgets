@@ -63,9 +63,14 @@ router.get('/get_widget_code', (req, res) => {
 router.get('/watching/:id', (req, res) => {
   var User = req.app.get('models').User;
   User.findById(req.params.id, (err, user) => {
-    if(err) console.log(err);
+    if(err) {
+      console.log(err);
+      res.json({});
+    };
 
-    if(!user) res.json({ works: [] });
+    if(!user) {
+      res.json({ works: [] });
+    }
     res.json({works: user.watching});
   });
   console.log('test');

@@ -6,10 +6,8 @@
       p Now Watching
   .annict_widgets_body
     ul
-      li
-        a 甲鉄城のカバネリ
-      li
-        a Re:ゼロから始める異世界生活
+      li(v-for='work in works')
+        a(href='{{work.official_site_url}}' title='{{work.title}}') {{work.title}}
   .annict_widgets_footer.cf
     p annict widgets by nukosuke
 </template>
@@ -21,16 +19,20 @@ import WorkList from './components/work-list.vue';
 export default {
   data() {
     return {
-      username: 'test',
-      works: [
-        {
-          'title': 'test1'
-        },
-        {
-          'title': 'test2'
-        }
-      ]
+      works: []
     }
+  },
+  created() {
+    console.log('aaaa');
+    var id = document.getElementById('annict-widgets').getAttribute('data-id');
+    console.log(id);
+
+    fetch(`/watching/${id}`)
+    .then(res => res.json())
+    .then(works => {
+      console.log(works.works);
+      this.works = works.works;
+    });
   },
   components: {
     WorkList
