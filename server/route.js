@@ -34,7 +34,7 @@ router.get('/auth/callback', (req, res) => {
     code
   )
   .then(token => {
-    res.json({ access_token: access_token.access_token });
+    res.json({ access_token: token.access_token });
   });
 });
 
