@@ -28,6 +28,7 @@
     "annict": "0.0.2",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "node-cron": "^1.1.1",
     "pug": "^2.0.0-beta3",
     "vue": "^1.0.24",
     "whatwg-fetch": "^1.0.0"
