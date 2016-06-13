@@ -8,9 +8,9 @@ module.exports = function(app) {
   const User   = app.get('models').User;
 
   var query = qs.stringify({
-    client_id     : config.CLIENT_ID,
+    client_id     : config.ANNICT_CLIENT_ID,
     response_type : 'code',
-    redirect_uri  : config.REDIRECT_URI,
+    redirect_uri  : config.ANNICT_REDIRECT_URI,
     scope         : 'read'
   });
 
@@ -30,10 +30,10 @@ module.exports = function(app) {
     }
 
     annict.OAuth.token(
-      config.CLIENT_ID,
-      config.CLIENT_SECRET,
+      config.ANNICT_CLIENT_ID,
+      config.ANNICT_CLIENT_SECRET,
       'authorization_code',
-      config.REDIRECT_URI,
+      config.ANNICT_REDIRECT_URI,
       code
     )
     .then(body => {

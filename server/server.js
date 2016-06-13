@@ -9,11 +9,11 @@ app.use(bodyParser.json());
 app.use('/static', express.static(__dirname+'/../public'));
 
 const config = {
-  MONGODB_URI: process.env.MONGODB_URI,
-  ANNICT_FETCH_INTERBAL: process.env.ANNICT_FETCH_INTERBAL
-  CLIENT_ID: process.env.CLIENT_ID,
-  CLIENT_SECRET: process.env.CLIENT_SECRET,
-  REDIRECT_URI: process.env.REDIRECT_URI,
+  ANNICT_MONGODB_URI    : process.env.MONGODB_URI,
+  ANNICT_FETCH_INTERBAL : process.env.ANNICT_FETCH_INTERBAL
+  ANNICT_CLIENT_ID      : process.env.CLIENT_ID,
+  ANNICT_CLIENT_SECRET  : process.env.CLIENT_SECRET,
+  ANNICT_REDIRECT_URI   : process.env.REDIRECT_URI,
 };
 app.set('config', config);
 
@@ -31,7 +31,7 @@ app.set('middlewares', {
  */
 var mongoose = require('mongoose');
 var models = {};
-mongoose.connect(config.MONGODB_URI);
+mongoose.connect(config.ANNICT_MONGODB_URI);
 const User = models.User = mongoose.model('User', require('./models/user'));
 app.set('models', models);
 
