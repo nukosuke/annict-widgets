@@ -58,12 +58,12 @@ module.exports = function(app) {
   });
 
   router.get('/get_widget_code', (req, res) => {
-    if(!req.params.id) {
+    if(!req.query.id) {
       return res.redirect('/');
     }
 
     return res.render('get-widget-code', {
-      dataId: req.params.id,
+      dataId: req.query.id,
     });
   });
 
