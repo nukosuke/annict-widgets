@@ -14,7 +14,8 @@ module.exports = function(app) {
             per_page      : 10
           })
           .then(response => {
-            user.watching = response.works;
+            user.watching   = response.works;
+            user.updated_at = new Date();
             user.save();
           });
         });
