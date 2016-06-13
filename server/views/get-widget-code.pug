@@ -12,10 +12,10 @@ html
         h1 Annict Widgets
         p generated your widget code. copy it &amp; paste into your site :)
         textarea.form-control
-          | &lt;div id='annict-widgets' data-id=''&gt;&lt;/div&gt;
+          | &lt;div id='annict-widgets' data-id='#{dataId}'&gt;&lt;/div&gt;
           | &lt;script type='text/javascript' src='annict-widgets.js'&gt;&lt;/script&gt;
 
       .col-md-4
-        #annict-widgets(data-id='')
+        #annict-widgets(data-id=dataId)
 
     script(src='/static/javascripts/annict-widgets.js')
