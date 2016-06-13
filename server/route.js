@@ -48,16 +48,20 @@ router.get('/auth/callback', (req, res) => {
       access_token: token.access_token,
       watching: [],
       updated_at: new Date()
-    }, (err, user) => {
-      if(err) res.json({ err: 'failed to save token' });
-      res.json({ access_token: user.access_token, id: user._id });
+    },
+    (err, user) => {
+      if(err) {
+        res.json({ err: 'failed to save token' });
+      }
+      res.redirect(`/get_widget_code?id=${user._id}`)
     });
-
   });
 });
 
 router.get('/get_widget_code', (req, res) => {
-  res.render('get-widget-code');
+  res.render('get-widget-code', {
+    dataId: req.params.id,
+  });
 });
 
 router.get('/watching/:id', (req, res) => {
