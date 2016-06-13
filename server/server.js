@@ -9,19 +9,19 @@ app.use(bodyParser.json());
 app.use('/static', express.static(__dirname+'/../public'));
 
 const config = {
-  ANNICT_MONGODB_URI    : process.env.MONGODB_URI,
-  ANNICT_FETCH_INTERBAL : process.env.ANNICT_FETCH_INTERBAL
-  ANNICT_CLIENT_ID      : process.env.CLIENT_ID,
-  ANNICT_CLIENT_SECRET  : process.env.CLIENT_SECRET,
-  ANNICT_REDIRECT_URI   : process.env.REDIRECT_URI,
+  ANNICT_MONGODB_URI    : process.env.ANNICT_MONGODB_URI    || 'localhost:27017',
+  ANNICT_FETCH_CRON_TAB : process.env.ANNICT_FETCH_CRON_TAB || '* */5 * * * *',
+  ANNICT_CLIENT_ID      : process.env.ANNICT_CLIENT_ID      || '',
+  ANNICT_CLIENT_SECRET  : process.env.ANNICT_CLIENT_SECRET  || '',
+  ANNICT_REDIRECT_URI   : process.env.ANNICT_REDIRECT_URI   || 'urn:ietf:wg:oauth:2.0:oob',
 };
 app.set('config', config);
 
 /**
  * use Annict client library as middleware
  */
-var Annict = require('annict').default;
-var annict = new Annict();
+const Annict = require('annict').default;
+const annict = new Annict();
 app.set('middlewares', {
   annict
 });
@@ -29,9 +29,10 @@ app.set('middlewares', {
 /**
  * DB config & Schema definition
  */
-var mongoose = require('mongoose');
-var models = {};
+const mongoose = require('mongoose');
 mongoose.connect(config.ANNICT_MONGODB_URI);
+
+const models = {};
 const User = models.User = mongoose.model('User', require('./models/user'));
 app.set('models', models);
 
@@ -47,10 +48,9 @@ app.set('controllers', controllers);
 const CronJob       = require('cron').CronJob;
 const UserUpdateJob = require('./jobs/update-users');
 const job           = UserUpdateJob(app);
+const crontab       = config.ANNICT_FETCH_CRON_TAB;
 
-const cron = new CronJob(`* */5 * * * *`, function() {
-    job();
-  }, () => {
+const cron = new CronJob(crontab, job, () => {
     console.log('cron job finished');
   },
   false,
@@ -62,8 +62,6 @@ const cron = new CronJob(`* */5 * * * *`, function() {
  */
 const route = Router(app);
 app.use(route);
-
-
 
 module.exports = {
   server: app,

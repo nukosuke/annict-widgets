@@ -4,7 +4,7 @@ var router  = express.Router();
 
 module.exports = function(app) {
   const config = app.get('config');
-  const annict = new Annict();
+  const annict = app.get('middlewares').annict;
   const User   = app.get('models').User;
 
   var query = qs.stringify({
@@ -83,5 +83,5 @@ module.exports = function(app) {
     console.log('test');
   });
 
-  module.exports = router;
+  return router;
 }
