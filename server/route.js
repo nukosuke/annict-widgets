@@ -2,82 +2,86 @@ var express = require('express');
 var qs      = require('querystring');
 var router  = express.Router();
 
-var Annict  = require('annict').default;
+module.exports = function(app) {
+  const config = app.get('config');
+  const annict = new Annict();
+  const User   = app.get('models').User;
 
-var CLIENT_ID     = process.env.CLIENT_ID;
-var CLIENT_SECRET = process.env.CLIENT_SECRET;
-var REDIRECT_URI  = process.env.REDIRECT_URI;
+  var query = qs.stringify({
+    client_id     : config.CLIENT_ID,
+    response_type : 'code',
+    redirect_uri  : config.REDIRECT_URI,
+    scope         : 'read'
+  });
 
-var query = qs.stringify({
-  client_id     : CLIENT_ID,
-  response_type : 'code',
-  redirect_uri  : REDIRECT_URI,
-  scope         : 'read'
-});
+  router.get('/', (req, res) => {
+    res.render('index');
+  });
 
-router.get('/', (req, res) => {
-  res.render('index', { msg: 'ok' });
-});
+  router.get('/auth', (req, res) => {
+    res.redirect(`https://api.annict.com/oauth/authorize\?${query}`);
+  });
 
-router.get('/auth', (req, res) => {
-  res.redirect(`https://api.annict.com/oauth/authorize\?${query}`);
-});
+  router.get('/auth/callback', (req, res) => {
+    const code = req.query.code;
 
-router.get('/auth/callback', (req, res) => {
-  var code    = req.query.code;
-
-  if(!code) {
-    res.json({});
-  }
-
-  var annict  = new Annict();
-  annict.OAuth.token(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    'authorization_code',
-    REDIRECT_URI,
-    code
-  )
-  .then(token => {
-    if(!token.access_token) {
+    if(!code) {
       res.json({});
     }
 
-    var User = req.app.get('models').User;
-    User.create({
-      access_token: token.access_token,
-      watching: [],
-      updated_at: new Date()
-    },
-    (err, user) => {
-      if(err) {
-        res.json({ err: 'failed to save token' });
+    annict.OAuth.token(
+      config.CLIENT_ID,
+      config.CLIENT_SECRET,
+      'authorization_code',
+      config.REDIRECT_URI,
+      code
+    )
+    .then(body => {
+      const token = body.access_token;
+
+      if(!token) {
+        res.json({});
       }
-      res.redirect(`/get_widget_code?id=${user._id}`)
+
+      User.create({
+        access_token : token,
+        watching     : [],
+        updated_at   : new Date()
+      },
+      (err, user) => {
+        if(err) {
+          res.json({ err: 'failed to save token' });
+        }
+        res.redirect(`/get_widget_code?id=${user._id}`);
+      });
     });
   });
-});
 
-router.get('/get_widget_code', (req, res) => {
-  res.render('get-widget-code', {
-    dataId: req.params.id,
-  });
-});
-
-router.get('/watching/:id', (req, res) => {
-  var User = req.app.get('models').User;
-  User.findById(req.params.id, (err, user) => {
-    if(err) {
-      console.log(err);
-      res.json({});
-    };
-
-    if(!user) {
-      res.json({ works: [] });
+  router.get('/get_widget_code', (req, res) => {
+    if(!req.params.id) {
+      res.redirect('/');
     }
-    res.json({works: user.watching});
-  });
-  console.log('test');
-});
 
-module.exports = router;
+    res.render('get-widget-code', {
+      dataId: req.params.id,
+    });
+  });
+
+  router.get('/watching/:id', (req, res) => {
+    var User = req.app.get('models').User;
+    User.findById(req.params.id, (err, user) => {
+      if(err) {
+        console.log(err);
+        res.json({});
+      };
+
+      if(!user) {
+        res.json({ works: [] });
+      }
+      res.json({works: user.watching});
+    });
+    console.log('test');
+  });
+
+  module.exports = router;
+}
