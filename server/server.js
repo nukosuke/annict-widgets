@@ -7,6 +7,11 @@ app.set('views', __dirname+'/views');
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use('/static', express.static(__dirname+'/../public'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const config = {
   ANNICT_MONGODB_URI    : process.env.ANNICT_MONGODB_URI    || 'localhost:27017',

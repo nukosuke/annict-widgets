@@ -2,7 +2,7 @@
 .annict_widgets
   .annict_widgets_header
     .heading
-      img(src='https://annict-widgets.arukas.io/static/images/annict_logo.png' alt='')
+      img(src='https://annict-widgets.arukascloud.io/static/images/annict_logo.png' alt='')
       p Now Watching
   .annict_widgets_body
     ul
