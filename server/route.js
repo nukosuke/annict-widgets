@@ -69,7 +69,7 @@ module.exports = function(app) {
       return res.redirect('/');
     }
 
-    const BASE_URL = `${req.protocol}://${req.get('Host')}`;
+    const BASE_URL = `https://${req.get('Host')}`;
 
     return res.render('get-widget-code', {
       BASE_URL,

@@ -2,7 +2,7 @@
 .annict_widgets
   .annict_widgets_header
     .heading
-      img(src='/static/images/annict_logo.png' alt='')
+      img(src='https://annict-widgets.arukas.io/static/images/annict_logo.png' alt='')
       p Now Watching
   .annict_widgets_body
     ul
@@ -19,13 +19,13 @@ import WorkList from './components/work-list.vue';
 export default {
   data() {
     return {
-      works: []
+      works: [{title: '読み込み中...'}]
     }
   },
   created() {
     var id = document.getElementById('annict-widgets').getAttribute('data-id');
 
-    fetch(`/watching/${id}`)
+    fetch(`https://annict-widgets.arukascloud.io/watching/${id}`)
     .then(res => res.json())
     .then(body => { this.works = body.works; });
   },
