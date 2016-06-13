@@ -48,11 +48,10 @@ module.exports = function(app) {
         filter_status : 'watching',
         per_page      : 10
       })
-      .then(response => response.json())
-      .then(body => {
+      .then(response => {
         User.create({
           access_token : token,
-          watching     : body.watching,
+          watching     : response.works,
           updated_at   : new Date()
         },
         (err, user) => {
