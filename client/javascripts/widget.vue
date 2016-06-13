@@ -23,16 +23,11 @@ export default {
     }
   },
   created() {
-    console.log('aaaa');
     var id = document.getElementById('annict-widgets').getAttribute('data-id');
-    console.log(id);
 
     fetch(`/watching/${id}`)
     .then(res => res.json())
-    .then(works => {
-      console.log(works.works);
-      this.works = works.works;
-    });
+    .then(body => { this.works = body.works; });
   },
   components: {
     WorkList
