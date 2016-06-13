@@ -1,13 +1,12 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
-var route      = require('./route');
+var Router     = require('./route');
 var app        = express();
 
 app.set('views', __dirname+'/views');
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use('/static', express.static(__dirname+'/../public'));
-app.use(route);
 
 const config = {
   MONGODB_URI: process.env.MONGODB_URI,
@@ -49,6 +48,9 @@ const cron = new CronJob(`* */5 * * * *`, function() {
   false,
   'Asia/Tokyo'
 );
+
+const route = Router(app);
+app.use(route);
 
 module.exports = {
   server: app,
