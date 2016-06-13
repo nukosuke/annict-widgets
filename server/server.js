@@ -31,34 +31,26 @@ const User = models.User = mongoose.model('User', require('./models/user'));
 app.set('models', models);
 
 
+var controllers = {};
+app.set('controllers', controllers);
+
 /**
  * Noe-Cron Job to fetch new data for all user
  */
-const CronJob = require('cron').CronJob;
-try {
-  new CronJob(`* */5 * * * *`, function() {
-    User.find({}, function(err, users) {
-      users.forEach(user => {
-        annict.Me.Work.get({
-          access_token: user.access_token,
-          filter_status: 'watching',
-          per_page: 10
-        })
-        .then(response => {
-          user.watching = response.works;
-          user.save();
-        });
-      });
-    });
-  },
-  () => {
+const CronJob       = require('cron').CronJob;
+const UserUpdateJob = require('./jobs/update-users');
+const job           = UserUpdateJob(app);
+
+const cron = new CronJob(`* */5 * * * *`, function() {
+    job();
+  }, () => {
     console.log('cron job finished');
   },
-  true,
-  'Asia/Tokyo');
-}
-catch(ex) {
-  console.log(ex);
-}
+  false,
+  'Asia/Tokyo'
+);
 
-module.exports = app;
+module.exports = {
+  server: app,
+  cron
+};
