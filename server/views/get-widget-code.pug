@@ -13,7 +13,7 @@ html
         p generated your widget code. copy it &amp; paste into your site :)
         textarea.form-control
           | &lt;div id='annict-widgets' data-id='#{dataId}'&gt;&lt;/div&gt;
-          | &lt;script type='text/javascript' src='annict-widgets.js'&gt;&lt;/script&gt;
+          | &lt;script type='text/javascript' src='#{BASE_URL}/static/javascripts/annict-widgets.js'&gt;&lt;/script&gt;
 
       .col-md-4
         #annict-widgets(data-id=dataId)

@@ -43,16 +43,24 @@ module.exports = function(app) {
         return res.json({});
       }
 
-      User.create({
-        access_token : token,
-        watching     : [],
-        updated_at   : new Date()
-      },
-      (err, user) => {
-        if(err) {
-          return res.json({ err: 'failed to save token' });
-        }
-        return res.redirect(`/get_widget_code?id=${user._id}`);
+      annict.Me.Work.get({
+        access_token  : token,
+        filter_status : 'watching',
+        per_page      : 10
+      })
+      .then(response => response.json())
+      .then(body => {
+        User.create({
+          access_token : token,
+          watching     : body.watching,
+          updated_at   : new Date()
+        },
+        (err, user) => {
+          if(err) {
+            return res.json({ err: 'failed to save token' });
+          }
+          return res.redirect(`/get_widget_code?id=${user._id}`);
+        });
       });
     });
   });
@@ -62,7 +70,10 @@ module.exports = function(app) {
       return res.redirect('/');
     }
 
+    const BASE_URL = `${req.protocol}://${req.get('Host')}`;
+
     return res.render('get-widget-code', {
+      BASE_URL,
       dataId: req.query.id,
     });
   });
