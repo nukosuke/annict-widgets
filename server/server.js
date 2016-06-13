@@ -17,19 +17,27 @@ const config = {
 };
 app.set('config', config);
 
+/**
+ * use Annict client library as middleware
+ */
 var Annict = require('annict').default;
 var annict = new Annict();
 app.set('middlewares', {
   annict
 });
 
+/**
+ * DB config & Schema definition
+ */
 var mongoose = require('mongoose');
 var models = {};
 mongoose.connect(config.MONGODB_URI);
 const User = models.User = mongoose.model('User', require('./models/user'));
 app.set('models', models);
 
-
+/**
+ * Controllers
+ */
 var controllers = {};
 app.set('controllers', controllers);
 
@@ -49,8 +57,13 @@ const cron = new CronJob(`* */5 * * * *`, function() {
   'Asia/Tokyo'
 );
 
+/**
+ * Configure routes
+ */
 const route = Router(app);
 app.use(route);
+
+
 
 module.exports = {
   server: app,
