@@ -26,7 +26,7 @@ module.exports = function(app) {
     const code = req.query.code;
 
     if(!code) {
-      res.json({});
+      return res.json({});
     }
 
     annict.OAuth.token(
@@ -40,7 +40,7 @@ module.exports = function(app) {
       const token = body.access_token;
 
       if(!token) {
-        res.json({});
+        return res.json({});
       }
 
       User.create({
@@ -50,19 +50,19 @@ module.exports = function(app) {
       },
       (err, user) => {
         if(err) {
-          res.json({ err: 'failed to save token' });
+          return res.json({ err: 'failed to save token' });
         }
-        res.redirect(`/get_widget_code?id=${user._id}`);
+        return res.redirect(`/get_widget_code?id=${user._id}`);
       });
     });
   });
 
   router.get('/get_widget_code', (req, res) => {
     if(!req.params.id) {
-      res.redirect('/');
+      return res.redirect('/');
     }
 
-    res.render('get-widget-code', {
+    return res.render('get-widget-code', {
       dataId: req.params.id,
     });
   });
@@ -71,16 +71,14 @@ module.exports = function(app) {
     var User = req.app.get('models').User;
     User.findById(req.params.id, (err, user) => {
       if(err) {
-        console.log(err);
-        res.json({});
+        return res.status(500).json({});
       };
 
       if(!user) {
-        res.json({ works: [] });
+        return res.status(404).json({ works: [] });
       }
-      res.json({works: user.watching});
+      return res.json({works: user.watching});
     });
-    console.log('test');
   });
 
   return router;
