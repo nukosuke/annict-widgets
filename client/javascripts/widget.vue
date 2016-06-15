@@ -88,6 +88,7 @@ export default {
   border-bottom: none;
 }
 .annict_widgets_body li > a {
+  text-decoration: none;
   color: #f85b73;
 }
 .annict_widgets_body li > a:hover {
