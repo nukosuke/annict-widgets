@@ -24,6 +24,6 @@ npm start
 - MongoDB
 
 ## ライセンス
-Copyright (c) 2016 ぬこすけ
-Released under the MIT license
+Copyright (c) 2016 ぬこすけ  
+Released under the MIT license  
 http://opensource.org/licenses/mit-license.php
