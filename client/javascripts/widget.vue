@@ -2,7 +2,8 @@
 .annict_widgets
   .annict_widgets_header
     .heading
-      img(src='https://annict-widgets.arukascloud.io/static/images/annict_logo.png' alt='')
+      a(href='https://annict.com')
+        img(src='https://annict-widgets.arukascloud.io/static/images/annict_logo.png' alt='')
       p Now Watching
   .annict_widgets_body
     ul
@@ -37,6 +38,7 @@ export default {
 
 <style lang='css'>
 .annict_widgets {
+  all: initial;
   max-width: 512px;
   max-height: 600px;
 }
@@ -78,7 +80,8 @@ export default {
   list-style: none;
 }
 .annict_widgets_body li {
-  padding: 4px;
+  font-size: 10pt;
+  padding: 4px 8px;
   border-bottom: dotted 1px #ccc;
 }
 .annict_widgets_body li:last-child {
