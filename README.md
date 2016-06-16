@@ -3,6 +3,9 @@ Annictから取得した自分の視聴中アニメリストをサイトに埋�
 
 <img src='https://cloud.githubusercontent.com/assets/17716649/16066527/fed6621e-32ee-11e6-8927-ab40831a322a.png' width='256'/>
 
+- [Annict](https://annict.com/)
+- [Annict Widgets](http://nukosuke.hatenablog.jp/entry/2016/06/15/224515)
+
 ## 使い方
 ```bash
 $ git clone git@github.com:nukosuke/annict-widgets.git
