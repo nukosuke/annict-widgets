@@ -36,6 +36,7 @@ module.exports = function(app) {
       config.ANNICT_REDIRECT_URI,
       code
     )
+    .then(response => response.json())
     .then(body => {
       const token = body.access_token;
 
