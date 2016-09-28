@@ -25,27 +25,27 @@
   },
   "homepage": "https://github.com/nukosuke/annict-widgets#readme",
   "dependencies": {
-    "annict": "0.0.2",
-    "body-parser": "^1.15.1",
+    "annict": "0.0.5",
+    "body-parser": "^1.15.2",
     "cron": "^1.1.0",
-    "express": "^4.13.4",
-    "mongoose": "^4.4.20",
-    "pug": "^2.0.0-beta3",
-    "vue": "^1.0.24",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.1",
+    "pug": "^2.0.0-beta6",
+    "vue": "^1.0.28",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.9.1",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-transform-runtime": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-0": "^6.5.0",
-    "babel-runtime": "^6.9.2",
-    "css-loader": "^0.23.1",
-    "vue-hot-reload-api": "^2.0.0",
-    "vue-html-loader": "^1.2.2",
-    "vue-loader": "^8.5.2",
+    "babel-runtime": "^6.11.6",
+    "css-loader": "^0.25.0",
+    "vue-hot-reload-api": "^2.0.6",
+    "vue-html-loader": "^1.2.3",
+    "vue-loader": "^8.5.4",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.2"
   }
 }
