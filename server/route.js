@@ -49,6 +49,7 @@ module.exports = function(app) {
         filter_status : 'watching',
         per_page      : 10
       })
+      .then(response => response.json())
       .then(response => {
         User.create({
           access_token : token,
