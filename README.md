@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nukosuke/annict-widgets.svg?branch=master)](https://travis-ci.org/nukosuke/annict-widgets)
+
 # annict-widgets
 Annictから取得した自分の視聴中アニメリストをサイトに埋め込むためのウィジェットとサーバです。
 
