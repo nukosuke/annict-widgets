@@ -13,6 +13,7 @@ module.exports = function(app) {
             filter_status : 'watching',
             per_page      : 10
           })
+          .then(response => response.json())
           .then(response => {
             user.watching   = response.works;
             user.updated_at = new Date();
