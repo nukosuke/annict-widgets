@@ -1,5 +1,6 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
+var session    = require('express-session');
 var Router     = require('./route');
 var app        = express();
 
@@ -7,6 +8,13 @@ app.set('views', __dirname+'/views');
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use('/static', express.static(__dirname+'/../public'));
+
+// session middle ware config
+app.use(session({
+  cookie: { serure: true }
+}));
+
+// Allow Cross Origin Request config
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
