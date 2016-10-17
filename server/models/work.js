@@ -1,5 +1,9 @@
 // work model
+const Schema = require('mongoose').Schema;
 
-module.exports = {
+const Work = new Schema({
+  title: String,
+  official_site_url: String,
+});
 
-}
+module.exports = Work;

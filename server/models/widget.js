@@ -1,10 +1,11 @@
 // widget model
 const Schema = require('mongoose').Schema;
 const ObjectId = Schema.ObjectId;
+cosnt Work = require('./work');
 
 const Widget = new Schema({
   name: String,
-  user: { type: ObjectId, ref: 'UserSchema' },
+  user: { type: ObjectId, ref: 'User' },
   works: [Work],
   updated_at: Date
 });
