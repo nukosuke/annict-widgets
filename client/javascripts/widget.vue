@@ -3,12 +3,12 @@
   .annict_widgets_header
     .heading
       a(href='https://annict.com')
-        img(src='{{WIDGET_SERVER_URI+"/static/images/annict_logo.png"}}' alt='')
+        img(:src='WIDGET_SERVER_URI+"/static/images/annict_logo.png"' alt='')
       p Now Watching
   .annict_widgets_body
     ul
       li(v-for='work in works')
-        a(href='{{work.official_site_url}}' title='{{work.title}}') {{work.title}}
+        a(:href='work.official_site_url' v-bind:title='work.title') {{work.title}}
   .annict_widgets_footer.cf
     p annict widgets by nukosuke
 </template>
