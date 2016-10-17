@@ -2,6 +2,8 @@ var express = require('express');
 var qs      = require('querystring');
 var router  = express.Router();
 
+const ctrl = require('./controllers');
+
 module.exports = function(app) {
   const config = app.get('config');
   const annict = app.get('middlewares').annict;
@@ -66,27 +68,14 @@ module.exports = function(app) {
     });
   });
 
-  router.get('/users/:id', (req, res) => {
-    if(!req.query.id) {
-      return res.redirect('/');
-    }
+  const userCtrl = new ctrl.UserController();
+  router.get('/users/:id', userCtrl.show);
 
-    return res.render('users/show', {
-      user
-    });
-  });
+  const widgetCtrl = new ctrl.WidgetController();
+  router.get('/widgets/:id', widgetCtrl.show);
+
 
   router.get('/widgets/:id', (req, res) => {
-    if(!req.query.id) {
-      return res.redirect('/');
-    }
-
-    const BASE_URL = `https://${req.get('Host')}`;
-
-    return res.render('widgets/index', {
-      BASE_URL,
-      dataId: req.query.id,
-    });
   });
 
   router.get('/api/watching/:id', (req, res) => {
