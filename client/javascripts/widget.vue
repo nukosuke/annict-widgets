@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style lang='scss'>
+$annict-color: #f85b73;
+
 .annict_widgets {
   all: initial;
   max-width: 512px;
@@ -49,7 +51,7 @@ export default {
 }
 .annict_widgets_header {
   color: white;
-  background-color: #f85b73;
+  background-color: $annict-color;
   padding: 4px 8px;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
@@ -92,7 +94,7 @@ export default {
   }
   li > a {
     text-decoration: none;
-    color: #f85b73;
+    color: $annict-color;
   }
   li > a:hover {
     text-decoration: underline;
