@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./bin/server.js",
     "postinstall": "./node_modules/.bin/webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "$(npm bin)/mocha 'tests/**/*.spec.js' -r ./tests/globals.js --recursive",
     "build": "./node_modules/.bin/webpack"
   },
   "repository": {
