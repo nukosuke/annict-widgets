@@ -26,7 +26,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: '"production"'
       },
-      'WIDGET_SERVER_URI': JSON.stringify("https://annict-widgets.arukascloud.io")
+      'WIDGET_SERVER_URI': JSON.stringify("https://widget.arukascloud.io")
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
