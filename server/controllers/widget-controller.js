@@ -1,7 +1,7 @@
 'use strict';
 
 class WidgetController {
-  constructor() {
+  constructor(app) {
   }
 
   index(req, res) {

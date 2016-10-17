@@ -1,7 +1,7 @@
 'use strict';
 
 class UserController {
-  constructor() {
+  constructor(app) {
 
   }
 
