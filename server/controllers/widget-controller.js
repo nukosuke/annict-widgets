@@ -1,4 +1,4 @@
-
+'use strict';
 
 class WidgetController {
   constructor() {
@@ -21,3 +21,5 @@ class WidgetController {
     });
   }
 }
+
+module.exports = WidgetController;

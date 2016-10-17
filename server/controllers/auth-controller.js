@@ -1,4 +1,4 @@
-
+'use strict';
 
 class AuthController {
   constructor() {
@@ -15,3 +15,5 @@ class AuthController {
     // and redirect to user page
   }
 }
+
+module.exports = AuthController;

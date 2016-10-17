@@ -1,3 +1,4 @@
+'use strict';
 
 class UserController {
   constructor() {
@@ -14,3 +15,5 @@ class UserController {
     });
   }
 }
+
+module.exports = UserController;
