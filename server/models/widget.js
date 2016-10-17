@@ -1,7 +1,7 @@
 // widget model
 const Schema = require('mongoose').Schema;
 const ObjectId = Schema.ObjectId;
-cosnt Work = require('./work');
+const Work = require('./work');
 
 const Widget = new Schema({
   name: String,
