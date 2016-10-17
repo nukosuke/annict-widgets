@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./bin/server.js",
     "postinstall": "./node_modules/.bin/webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "$(npm bin)/mocha 'tests/**/*.spec.js' -r ./tests/globals.js --recursive",
     "build": "./node_modules/.bin/webpack"
   },
   "repository": {
@@ -41,7 +41,11 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-runtime": "^6.11.6",
+    "chai": "^3.5.0",
     "css-loader": "^0.25.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.6.0",
