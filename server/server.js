@@ -37,8 +37,12 @@ app.set('middlewares', {
 const mongoose = require('mongoose');
 mongoose.connect(config.ANNICT_MONGODB_URI);
 
-const models = {};
-const User = models.User = mongoose.model('User', require('./models/user'));
+const schema = require('./models');
+const models = {
+  User   : mongoose.model('User'  , schema.User),
+  Widget : mongoose.model('Widget', schema.Widget),
+  Work   : mongoose.model('Work'  , schema.Work),
+};
 app.set('models', models);
 
 /**
