@@ -11,6 +11,9 @@ app.use('/static', express.static(__dirname+'/../public'));
 
 // session middle ware config
 app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
   cookie: { serure: true }
 }));
 
