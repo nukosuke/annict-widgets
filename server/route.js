@@ -66,20 +66,30 @@ module.exports = function(app) {
     });
   });
 
-  router.get('/get_widget_code', (req, res) => {
+  router.get('/users/:id', (req, res) => {
+    if(!req.query.id) {
+      return res.redirect('/');
+    }
+
+    return res.render('users/show', {
+      user
+    });
+  });
+
+  router.get('/widgets/:id', (req, res) => {
     if(!req.query.id) {
       return res.redirect('/');
     }
 
     const BASE_URL = `https://${req.get('Host')}`;
 
-    return res.render('get-widget-code', {
+    return res.render('widgets/index', {
       BASE_URL,
       dataId: req.query.id,
     });
   });
 
-  router.get('/watching/:id', (req, res) => {
+  router.get('/api/watching/:id', (req, res) => {
     var User = req.app.get('models').User;
     User.findById(req.params.id, (err, user) => {
       if(err) {

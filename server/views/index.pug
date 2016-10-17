@@ -1,21 +1,13 @@
-doctype html
-html
-  head
-    title Annict Widgets - アニクトウィジェット
-    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
-  body
-    style.
-      body { color: #444; }
-      .btn-annict { background-color: #f85b73; color: white; }
-      .btn-annict:hover { background-color: #f62a49; color: white; }
-    .container
-      .rows
-        .col-md-8.col-md-offset-2
-          div(align='center')
-            h1 Annict Widgets
-            p 認証することで画像のようなウィジェットが作成できます。
-            img(style='padding: 32px 0;' src='/static/images/annict-widgets-shot.png' alt='annict-widgets' width='256px')
-            p
-              a.btn.btn-annict(href='/auth')
-                span.glyphicon-plus
-                | &nbsp;ウィジェットを作成
+extends ./layout.pug
+
+block content
+  .rows
+    .col-md-8.col-md-offset-2
+        div(align='center')
+          h1 Annict Widgets
+          p 認証することで画像のようなウィジェットが作成できます。
+          img(style='padding: 32px 0;' src='/static/images/annict-widgets-shot.png' alt='annict-widgets' width='256px')
+          p
+            a.btn.btn-annict(href='/auth')
+              span.glyphicon-plus
+              | &nbsp;ウィジェットを作成

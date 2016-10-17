@@ -1,5 +1,6 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
+var session    = require('express-session');
 var Router     = require('./route');
 var app        = express();
 
@@ -7,6 +8,16 @@ app.set('views', __dirname+'/views');
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use('/static', express.static(__dirname+'/../public'));
+
+// session middle ware config
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { serure: true }
+}));
+
+// Allow Cross Origin Request config
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -37,8 +48,12 @@ app.set('middlewares', {
 const mongoose = require('mongoose');
 mongoose.connect(config.ANNICT_MONGODB_URI);
 
-const models = {};
-const User = models.User = mongoose.model('User', require('./models/user'));
+const schema = require('./models');
+const models = {
+  User   : mongoose.model('User'  , schema.User),
+  Widget : mongoose.model('Widget', schema.Widget),
+  Work   : mongoose.model('Work'  , schema.Work),
+};
 app.set('models', models);
 
 /**

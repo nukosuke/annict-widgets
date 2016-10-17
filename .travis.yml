@@ -3,5 +3,8 @@ node_js:
   - 6
   - 5
   - 4
+env:
+  - ANNICT_MONGODB_URI=localhost:27017
+  - ANNICT_FETCH_CRON_TAB='* */10 * * * *'
 services:
   - mongodb

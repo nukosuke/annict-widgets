@@ -1,0 +1,7 @@
+extends ../layout.pug
+
+block content
+  ul
+    each widget in widgets
+      li
+        a(src=widget.id)= widget.name
