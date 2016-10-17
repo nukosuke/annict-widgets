@@ -37,14 +37,15 @@ export default {
 }
 </script>
 
-<style lang='css'>
+<style lang='scss'>
 .annict_widgets {
   all: initial;
   max-width: 512px;
   max-height: 600px;
-}
-.annict_widgets p {
-  margin: 0;
+
+  p {
+    margin: 0;
+  }
 }
 .annict_widgets_header {
   color: white;
@@ -52,59 +53,62 @@ export default {
   padding: 4px 8px;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
-}
-.annict_widgets_header .heading {
-  display: table;
-}
-.annict_widgets_header img {
-  display: table-cell;
-  width: 35px;
-}
-.annict_widgets_header p {
-  display: table-cell;
-  vertical-align: middle;
-  font-size: 10pt;
-  padding-left: 4px;
-}
-.annict_widgets_header a {
-  color: white;
-  font-size: 11pt;
-  text-decoration: none;
+
+  .heading {
+    display: table;
+  }
+  img {
+    display: table-cell;
+    width: 35px;
+  }
+  p {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 10pt;
+    padding-left: 4px;
+  }
+  a {
+    color: white;
+    font-size: 11pt;
+    text-decoration: none;
+  }
 }
 .annict_widgets_body {
   background-color: white;
   border: solid 1px #ddd;
-}
-.annict_widgets_body ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.annict_widgets_body li {
-  font-size: 10pt;
-  padding: 4px 8px;
-  border-bottom: dotted 1px #ccc;
-}
-.annict_widgets_body li:last-child {
-  border-bottom: none;
-}
-.annict_widgets_body li > a {
-  text-decoration: none;
-  color: #f85b73;
-}
-.annict_widgets_body li > a:hover {
-  text-decoration: underline;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    font-size: 10pt;
+    padding: 4px 8px;
+    border-bottom: dotted 1px #ccc;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+  li > a {
+    text-decoration: none;
+    color: #f85b73;
+  }
+  li > a:hover {
+    text-decoration: underline;
+  }
 }
 .annict_widgets_footer {
   background-color: #444;
   padding: 2px 16px;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
-}
-.annict_widgets_footer p {
-  color: #eee;
-  font-size: 8pt;
-  float: right;
+
+  p {
+    color: #eee;
+    font-size: 8pt;
+    float: right;
+  }
 }
 
 .cf:before, .cf:after { content: " "; display: table; }

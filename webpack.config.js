@@ -14,11 +14,13 @@ module.exports = {
     loaders: [
       { test: /\.vue$/, loader: 'vue' },
       { test: /\.js$/ , loader: 'babel', exclude: /node_modules/ },
+      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
     ]
   },
   vue: {
     loaders: {
-      js: 'babel'
+      js: 'babel',
+      scss: 'style!css!sass',
     }
   },
   plugins: [
