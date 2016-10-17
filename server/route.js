@@ -1,96 +1,25 @@
 var express = require('express');
-var qs      = require('querystring');
 var router  = express.Router();
 
 const ctrl = require('./controllers');
 
 module.exports = function(app) {
-  const config = app.get('config');
-  const annict = app.get('middlewares').annict;
-  const User   = app.get('models').User;
-
-  var query = qs.stringify({
-    client_id     : config.ANNICT_CLIENT_ID,
-    response_type : 'code',
-    redirect_uri  : config.ANNICT_REDIRECT_URI,
-    scope         : 'read'
-  });
-
   router.get('/', (req, res) => {
     res.render('index');
   });
 
-  router.get('/auth', (req, res) => {
-    res.redirect(`https://api.annict.com/oauth/authorize\?${query}`);
-  });
+  const authCtrl = new ctrl.AuthController(app);
+  router.get('/auth', authCtrl.auth);
+  router.get('/auth/callback', authCtrl.callback);
 
-  router.get('/auth/callback', (req, res) => {
-    const code = req.query.code;
-
-    if(!code) {
-      return res.json({});
-    }
-
-    annict.OAuth.token(
-      config.ANNICT_CLIENT_ID,
-      config.ANNICT_CLIENT_SECRET,
-      'authorization_code',
-      config.ANNICT_REDIRECT_URI,
-      code
-    )
-    .then(response => response.json())
-    .then(body => {
-      const token = body.access_token;
-
-      if(!token) {
-        return res.json({});
-      }
-
-      annict.Me.Work.get({
-        access_token  : token,
-        filter_status : 'watching',
-        per_page      : 10
-      })
-      .then(response => response.json())
-      .then(response => {
-        User.create({
-          access_token : token,
-          watching     : response.works,
-          updated_at   : new Date()
-        },
-        (err, user) => {
-          if(err) {
-            return res.json({ err: 'failed to save token' });
-          }
-          return res.redirect(`/get_widget_code?id=${user._id}`);
-        });
-      });
-    });
-  });
-
-  const userCtrl = new ctrl.UserController();
+  const userCtrl = new ctrl.UserController(app);
   router.get('/users/:id', userCtrl.show);
 
-  const widgetCtrl = new ctrl.WidgetController();
+  const widgetCtrl = new ctrl.WidgetController(app);
   router.get('/widgets/:id', widgetCtrl.show);
 
-
-  router.get('/widgets/:id', (req, res) => {
-  });
-
-  router.get('/api/watching/:id', (req, res) => {
-    var User = req.app.get('models').User;
-    User.findById(req.params.id, (err, user) => {
-      if(err) {
-        return res.status(500).json({});
-      };
-
-      if(!user) {
-        return res.status(404).json({ works: [] });
-      }
-      return res.json({works: user.watching});
-    });
-  });
+  const apiWidgetCtrl = new ctrl.ApiWidgetController(app);
+  router.get('/api/widgets/:id', );
 
   return router;
 }

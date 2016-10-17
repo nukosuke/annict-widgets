@@ -4,8 +4,8 @@ const Widget = require('./widget');
 
 const User = new Schema({
   access_token: String,
-  widgets: [Widget],
-  updated_at: Date
+  widgets: { type: [Widget], default: [] },
+  updated_at: Date,
 });
 
 module.exports = User;
