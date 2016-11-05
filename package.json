@@ -31,7 +31,7 @@
     "express": "^4.14.0",
     "mongoose": "^4.6.6",
     "pug": "^2.0.0-beta6",
-    "vue": "^2.0.3",
+    "vue": "^2.0.5",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
