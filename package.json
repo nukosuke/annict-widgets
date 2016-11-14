@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/nukosuke/annict-widgets#readme",
   "dependencies": {
-    "annict": "0.0.5",
+    "annict": "0.0.6",
     "body-parser": "^1.15.2",
     "cron": "^1.1.0",
     "express": "^4.14.0",
