@@ -27,7 +27,7 @@
   "dependencies": {
     "annict": "0.0.6",
     "body-parser": "^1.15.2",
-    "cron": "^1.1.0",
+    "cron": "^1.2.1",
     "express": "^4.14.0",
     "mongoose": "^4.7.4",
     "pug": "^2.0.0-beta6",
