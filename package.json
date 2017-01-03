@@ -42,7 +42,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-runtime": "^6.20.0",
     "css-loader": "^0.26.1",
-    "vue-hot-reload-api": "^2.0.6",
+    "vue-hot-reload-api": "^2.0.7",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^10.0.2",
     "vue-style-loader": "^1.0.0",
